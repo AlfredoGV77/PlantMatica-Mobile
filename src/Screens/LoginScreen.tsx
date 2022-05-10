@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {styles} from '../Styles/Login';
+import {styles} from '../Styles/LoginStyle';
 
 
 //ESTA CLASE ES UNICAMENTE PARA HACER LA VISTA GRAFICA DE LA APP

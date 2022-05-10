@@ -1,12 +1,23 @@
 /* eslint-disable prettier/prettier */
-import {View, Text} from 'react-native';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
+import {View, Text, Image} from 'react-native';
 import React from 'react';
+import { styleRegister } from '../Styles/RegisterStyle';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const RegisterScreen = () => {
+  // ESTE CODIGO ES PARA DEJAR ESPACIO EN CELULARES CON NOTCH
+  const { top } = useSafeAreaInsets();
   return (
-    <View>
-      <Text>RegisterScreen</Text>
-    </View>
+
+    <>
+      <Image
+        source={require('../Recursos/Esquina.png')}
+        style={styleRegister.esquina}
+      />
+      <Text style={{...styleRegister.titulo, top:top + 20}}>Registrate</Text>
+    </>
   );
 };
 
