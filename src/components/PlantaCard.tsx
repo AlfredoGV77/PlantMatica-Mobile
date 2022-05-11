@@ -12,7 +12,7 @@ import { usePlantaPagineted } from '../hooks/usePlantaPagineted';
 import { SimplePlanta } from '../interfaces/plantaInterfaces';
 import { PlantCardStyle } from '../Styles/PlantCardStyle';
 import { FadeInImage } from './FadeInImage';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import React from 'react';
 import ImageColors from 'react-native-image-colors'
 
@@ -26,6 +26,7 @@ export const PlantaCard = ({planta}:Props) => {
     const [index, setIndex] = useState(0);
     const{simplePlantaList, loadFichas} = usePlantaPagineted();
     const[bgcolor,setBgColor] = useState('green');
+    const isMounted = useRef(true);
 
     
     function getRandomColor() {
@@ -37,10 +38,14 @@ export const PlantaCard = ({planta}:Props) => {
     useEffect(()=>{
         ImageColors.getColors('https://laopinion.com/wp-content/uploads/sites/3/2019/12/canva-bugambilias-purple-color.jpg?quality=60&strip=all&w=960&h=640&crop=1',{fallback:'#72cb10'})
          .then(colors => {
+             if(isMounted.current) {return;}
              (colors.platform === 'android')
                 ? setBgColor(colors.dominant || '#72cb10')
                 : console.log('holixd');
          })
+         return ()=>{
+             isMounted.current = false;
+         }
     },[])
 
 
