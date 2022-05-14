@@ -17,6 +17,7 @@ export type RootStackParams={
   Plantas: undefined;
   DetallePlanta: {simplePlanta:SimplePlanta, color:string};
 }
+
 const Stack = createStackNavigator<RootStackParams>();
 
 export const Navigator = () => {

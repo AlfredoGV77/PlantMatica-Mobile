@@ -15,6 +15,9 @@ import { FadeInImage } from './FadeInImage';
 import { useState, useEffect, useRef } from 'react';
 import React from 'react';
 import ImageColors from 'react-native-image-colors'
+import { useNavigation } from '@react-navigation/core';
+import { color } from 'react-native-reanimated';
+import { CommonActions } from '@react-navigation/native';
 
 
 interface Props{
@@ -27,6 +30,7 @@ export const PlantaCard = ({planta}:Props) => {
     const{simplePlantaList, loadFichas} = usePlantaPagineted();
     const[bgcolor,setBgColor] = useState('green');
     const isMounted = useRef(true);
+    const navigation = useNavigation();
 
     
     function getRandomColor() {
@@ -50,7 +54,10 @@ export const PlantaCard = ({planta}:Props) => {
 
 
     return (
-        <TouchableOpacity>
+        <TouchableOpacity 
+            activeOpacity={0.9}
+            onPress={()=>navigation.dispatch(CommonActions.navigate('DetallePlanta',{simplePlanta:planta, color:bgcolor}))}
+        >
         <View style={{
                 ...PlantCardStyle.cardContainer,
                 backgroundColor:bgcolor,
