@@ -27,14 +27,12 @@ export const usePlantaPagineted = () => {
   }
 
   const mapPlantaList=(plantaList:Ficha[])=>{
-    const newPlantaList:SimplePlanta[]=plantaList.map(({_id,nombre_comun,etiquetas})=>{
-      const id=_id;
-      const nombre=nombre_comun;
-      const etiquetasx=etiquetas;
+    const newPlantaList:SimplePlanta[]=plantaList.map(({_id,nombre_comun,etiquetas,imagen})=>{
       return {
         _id,
         nombre_comun,
         etiquetas,
+        imagen,
       }
     });
     setSimplePlantaList([...simplePlantaList,...newPlantaList]);
