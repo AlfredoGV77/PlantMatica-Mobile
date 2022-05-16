@@ -40,17 +40,17 @@ export const PlantaCard = ({planta}:Props) => {
     }
 
     useEffect(()=>{
-        ImageColors.getColors('https://laopinion.com/wp-content/uploads/sites/3/2019/12/canva-bugambilias-purple-color.jpg?quality=60&strip=all&w=960&h=640&crop=1',{fallback:'#72cb10'})
+        ImageColors.getColors(planta.imagen,{fallback:'#72cb10'})
          .then(colors => {
              if(isMounted.current) {return;}
              (colors.platform === 'android')
-                ? setBgColor(colors.dominant || '#72cb10')
+                ? setBgColor(colors.vibrant || '#72cb10')
                 : console.log('holixd');
          })
          return ()=>{
              isMounted.current = false;
          }
-    },[])
+    },[planta.imagen])
 
 
     return (
@@ -80,7 +80,7 @@ export const PlantaCard = ({planta}:Props) => {
                 style={PlantCardStyle.esquina}
             />
             <FadeInImage
-                uri="https://laopinion.com/wp-content/uploads/sites/3/2019/12/canva-bugambilias-purple-color.jpg?quality=60&strip=all&w=960&h=640&crop=1"
+                uri={planta.imagen}
                 style={PlantCardStyle.imagen}
             />
 

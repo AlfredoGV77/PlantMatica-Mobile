@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable prettier/prettier */
 /* eslint-disable prettier/prettier */
 /* eslint-disable prettier/prettier */
 /* eslint-disable prettier/prettier */
@@ -30,7 +32,33 @@ export const DetallePlantaStyle = StyleSheet.create({
         top:-120,
         width:150,
         height:150,
-        left:120,
+        left:110,
+        borderRadius:100,
+    },
+    Loading:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    absoluteFillObject:{
+        
+    },
+    container:{
+        margin:3,
+        borderBottomWidth: 2,
+    },
+
+    title:{
+        fontSize:18,
+        color:'black',
+    },
+    etiquetas:{
+        fontSize:18,
+        color:'black',
+        paddingLeft:5,
+        height:25,
+        borderRadius:20,
+        margin:2,
     },
 })
 

@@ -14,22 +14,27 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
 import { RootStackParams } from '../navigation/Navigator'
-import { Image, Text, View } from 'react-native';
+import { ActivityIndicator, Image, Text, View } from 'react-native';
 import { DetallePlantaStyle } from '../Styles/DetallePlantaStyle';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FadeInImage } from '../components/FadeInImage';
+import { usePlanta } from '../hooks/usePlanta';
+import { PlantaDetails } from '../components/PlantaDetails';
 
 
 interface Props extends StackScreenProps<RootStackParams,'DetallePlanta'>{};
 
 export const DetallePlanta = ( {navigation,route}:Props) => {
     const{simplePlanta,color} = route.params;
-    const{_id,nombre_comun}=simplePlanta;
+    const{_id,nombre_comun,imagen}=simplePlanta;
     const {top} = useSafeAreaInsets();   
+
+    const{isLoading,Planta} = usePlanta(_id)
+
     return (
-        <View>
+        <View style={{flex:1}}>
             {/* Header Container*/}
             <View style={{
                     ...DetallePlantaStyle.Header,
@@ -48,11 +53,19 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
                 </Text>
                 </View>
 
-                <Image source={require('../Recursos/Icono.png')} style={{...DetallePlantaStyle.Imagen}}/>
+                <Image source={{uri:imagen}} style={{...DetallePlantaStyle.Imagen}}/>
+            </View>
+            {/* Detalles y loading */}
+            {
+                isLoading ?(
+                    <View style={{...DetallePlantaStyle.Loading}}>
+                        <ActivityIndicator color={color} size={50}/>
+                    </View>
+                )
+                :<PlantaDetails planta={Planta} color={color}/>
+            }
 
 
-
-            </View>          
         </View>
     )
 }
