@@ -32,7 +32,6 @@ export const DetallePlantaStyle = StyleSheet.create({
         top:-120,
         width:150,
         height:150,
-        left:110,
         borderRadius:100,
     },
     Loading:{

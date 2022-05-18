@@ -15,10 +15,6 @@ import { usePlantaPagineted } from '../hooks/usePlantaPagineted';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PlantaCard } from '../components/PlantaCard';
 import { PlantCardStyle } from '../Styles/PlantCardStyle';
-
-
-
-
 export const Plantas = () => {
   const{top} = useSafeAreaInsets();
   const{simplePlantaList, loadFichas} = usePlantaPagineted();
