@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-extra-semi */
 /* eslint-disable space-infix-ops */
 /* eslint-disable prettier/prettier */
@@ -19,7 +18,6 @@ import { DetallePlantaStyle } from '../Styles/DetallePlantaStyle';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { FadeInImage } from '../components/FadeInImage';
 import { usePlanta } from '../hooks/usePlanta';
 import { PlantaDetails } from '../components/PlantaDetails';
 
@@ -52,8 +50,9 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
                     {nombre_comun}
                 </Text>
                 </View>
-
+                <View style={{alignItems:'center'}}>
                 <Image source={{uri:imagen}} style={{...DetallePlantaStyle.Imagen}}/>
+                </View>
             </View>
             {/* Detalles y loading */}
             {

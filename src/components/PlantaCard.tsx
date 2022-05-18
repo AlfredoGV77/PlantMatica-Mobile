@@ -27,7 +27,6 @@ interface Props{
 export const PlantaCard = ({planta}:Props) => {
     const ref = React.useRef<FlatList>(null);
     const [index, setIndex] = useState(0);
-    const{simplePlantaList, loadFichas} = usePlantaPagineted();
     const[bgcolor,setBgColor] = useState('green');
     const isMounted = useRef(true);
     const navigation = useNavigation();
