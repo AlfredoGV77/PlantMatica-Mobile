@@ -1,24 +1,40 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prettier/prettier */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import { ActivityIndicator, FlatList, Text, View, Dimensions } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Text, View, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PlantaCard } from '../components/PlantaCard';
 import { SearchInput } from '../components/SearchInput';
 import { usePlantaSearch } from '../hooks/usePlantaSearch';
-import { SearchInputStyle } from '../Styles/SearchInputStyle';
 import { PlantCardStyle } from '../Styles/PlantCardStyle';
 import { Loading } from '../components/Loading';
+import { SimplePlanta } from '../interfaces/plantaInterfaces';
 
 export const SearchScreen = () => {
 
   const {top} = useSafeAreaInsets();
   const {isFetching, simplePlantaList} = usePlantaSearch();
 
+  const [plantaFiltered,setplantaFiltered] = useState<SimplePlanta[]>([]);
+
+  const [term,setTerm] = useState('');
+
+  useEffect(()=>{
+    if (term.length === 0){
+      return setplantaFiltered([]);
+    }
+
+    setplantaFiltered(
+      simplePlantaList.filter(planta => planta.nombre_comun.includes(term))
+    );
+    console.log(simplePlantaList.filter(planta => planta.nombre_comun.toLocaleLowerCase().includes(term.toLocaleLowerCase())));
+
+  }, [term]);
+
+
   if (isFetching){
-    return <Loading/>;
+    return <Loading />;
   }
 
   return (
@@ -27,15 +43,15 @@ export const SearchScreen = () => {
     }}
     >
       <SearchInput
+        onDebounce={ (value) => setTerm( value )  }
         style={{
-          position:'absolute',
-          zIndex:999,
-          width:Dimensions.get('window').width - 5,
-          top:top + 30,
-        }}
-      />
+          position: 'absolute',
+          zIndex: 999,
+          width: Dimensions.get('window').width - 5,
+          top: top + 30,
+        }}/>
       <FlatList
-        data={simplePlantaList}
+        data={plantaFiltered}
         keyExtractor={(planta) => planta._id}
         showsVerticalScrollIndicator={false}
         numColumns={2}
@@ -46,7 +62,7 @@ export const SearchScreen = () => {
             ...PlantCardStyle.titulo,
             marginTop:top + 70,
 
-          }}>PlantMatica</Text>
+          }}>{term}</Text>
         )}
 
         renderItem={({item}) => (<PlantaCard planta={item}/>)}
