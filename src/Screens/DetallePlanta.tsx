@@ -12,7 +12,7 @@
 
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
-import { RootStackParams } from '../navigation/Navigator'
+import { RootStackParams } from '../navigation/Tab1'
 import { ActivityIndicator, Image, Text, View } from 'react-native';
 import { DetallePlantaStyle } from '../Styles/DetallePlantaStyle';
 import { TouchableOpacity } from 'react-native-gesture-handler';

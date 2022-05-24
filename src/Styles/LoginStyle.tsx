@@ -60,4 +60,8 @@ export const styles = StyleSheet.create({
     elevation: 25,
     shadowColor: 'green',
   },
+  newUserContainer:{
+    alignItems:'flex-end',
+    marginTop:10,
+  },
 });
