@@ -16,7 +16,7 @@ export const usePlantaPagineted = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [simplePlantaList,setSimplePlantaList]=useState<SimplePlanta[]>([]);
   // ESTO ES PA Q NAMAS PA Q SE HAGA UN SCROLL INFINITO
-  const nextPageUrl=useRef('https://plantmatica-api.vercel.app/ficha?limit=40')
+  const nextPageUrl=useRef('https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha')
   
   const loadFichas=async()=>{
     setIsLoading(true);

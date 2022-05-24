@@ -12,7 +12,7 @@ export const usePlanta = (_id:string) => {
   const [Planta,setPlanta] = useState<PlantaFullInformation>()
 
   const loadPlanta = async() => {
-      const resp = await plantaApi.get<PlantaFullInformation>(`https://plantmatica-api.vercel.app/ficha/${ _id }`);
+      const resp = await plantaApi.get<PlantaFullInformation>(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha/${ _id }`);
       setPlanta(resp.data);
       setIsLoading(false);
   }

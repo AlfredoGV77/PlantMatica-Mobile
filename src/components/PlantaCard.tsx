@@ -1,23 +1,20 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable keyword-spacing */
-/* eslint-disable prettier/prettier */
 /* eslint-disable semi */
-/* eslint-disable prettier/prettier */
-import { Text, useWindowDimensions, View, Dimensions, Image } from 'react-native';
+
+import { Text, View, Image } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { usePlantaPagineted } from '../hooks/usePlantaPagineted';
 import { SimplePlanta } from '../interfaces/plantaInterfaces';
 import { PlantCardStyle } from '../Styles/PlantCardStyle';
-import { FadeInImage } from './FadeInImage';
 import { useState, useEffect, useRef } from 'react';
 import React from 'react';
 import ImageColors from 'react-native-image-colors'
 import { useNavigation } from '@react-navigation/core';
-import { color } from 'react-native-reanimated';
 import { CommonActions } from '@react-navigation/native';
+import { FadeInImage } from './FadeInImage';
 
 
 interface Props{
@@ -51,7 +48,7 @@ export const PlantaCard = ({planta}:Props) => {
          }
     },[planta.imagen])
 
-
+// holi 
     return (
         <TouchableOpacity 
             activeOpacity={0.9}
@@ -61,7 +58,7 @@ export const PlantaCard = ({planta}:Props) => {
                 ...PlantCardStyle.cardContainer,
                 backgroundColor:bgcolor,
             }}>
-        {/* Nombre y etiquetas de la PLanta */}
+        {/* Nombre y etiquetas de la PLanta xd*/}
         <View>
             <Text style={{...PlantCardStyle.name}}>
                 {planta.nombre_comun}
@@ -72,7 +69,7 @@ export const PlantaCard = ({planta}:Props) => {
                 horizontal
                 initialScrollIndex={index}
                 data={planta.etiquetas.map((item)=>item)}
-                renderItem={({item})=><Text style={{...PlantCardStyle.etiquetas,width:item.length * 9.5, backgroundColor:getRandomColor()}}>{item}</Text>}
+                renderItem={({item})=><Text style={{...PlantCardStyle.etiquetas,width:item.length * 9.5, backgroundColor:'#3fc217'}}>{item}</Text>}
             />
             <Image 
                 source={require('../Recursos/TarjetaEsquina.png')}

@@ -12,7 +12,7 @@ export const usePlantaSearch = () => {
   const [simplePlantaList,setSimplePlantaList] = useState<SimplePlanta[]>([]);
   
   const loadFichas = async()=>{
-    const resp = await plantaApi.get<PlantaPaginatedResponse>('https://plantmatica-api.vercel.app/ficha');
+    const resp = await plantaApi.get<PlantaPaginatedResponse>('https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha');
     mapPlantaList(resp.data.fichas);
   };
 
