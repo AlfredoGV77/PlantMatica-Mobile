@@ -1,17 +1,20 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable curly */
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LoginScreen } from '../Screens/LoginScreen';
 import { RegisterScreen } from '../Screens/RegisterScreen';
 import { AuthContext } from '../context/AuthContext';
 import { Tabs } from './Tabs';
+import { LoadingScreen } from '../Screens/LoadingScreen';
 
 const Stack = createStackNavigator();
 
 export const NavigatorMain = () => {
 
   const {status} = useContext(AuthContext);
-  console.log('AY NO, ESO SI JAMAAAAAAAAAAS' + status);
+
+  if (status === 'checking') return <LoadingScreen/>;
 
   return (
       <Stack.Navigator

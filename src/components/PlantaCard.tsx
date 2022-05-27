@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable curly */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -28,17 +29,10 @@ export const PlantaCard = ({planta}:Props) => {
     const isMounted = useRef(true);
     const navigation = useNavigation();
 
-    
-    function getRandomColor() {
-        const colores = ['#5ab507','#66c00b','#72cb10','#89d631','#a9e159','#3fc217','#20ae00']
-        const num = Math.round(Math.random() * (6 - 0) + 0);
-        return colores[num];
-    }
-
     useEffect(()=>{
         ImageColors.getColors(planta.imagen,{fallback:'#72cb10'})
          .then(colors => {
-             if(isMounted.current) {return;}
+             if(!isMounted.current) return;
              (colors.platform === 'android')
                 ? setBgColor(colors.vibrant || '#72cb10')
                 : console.log('holixd');
