@@ -15,11 +15,14 @@ export const DetallePlantaStyle = StyleSheet.create({
     Header:{
         zIndex:999,
         height:Dimensions.get('window').height / 2.5,
-        borderBottomRightRadius:1000,
-        borderBottomLeftRadius:1000,
+        borderBottomRightRadius:100,
+        borderBottomLeftRadius:100,
     },
     BackButton:{
         left:15,
+    },
+    StarButton:{
+        right:-350,
     },
     Title:{
         fontSize:40,
