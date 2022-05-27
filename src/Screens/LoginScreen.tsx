@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable curly */
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React, { useContext } from 'react';
 import { Dimensions, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -6,26 +8,44 @@ import { TextInput } from 'react-native-gesture-handler';
 import { useForm } from '../hooks/useForm';
 import { StackScreenProps } from '@react-navigation/stack';
 import { styles } from '../Styles/LoginStyle';
+import { Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { AuthContext } from '../context/AuthContext';
+import { useEffect } from 'react';
 
 
 interface Props extends StackScreenProps<any,any> {}
 
 export const LoginScreen = ({navigation}:Props) =>{
 
-    const {signIn} = useContext(AuthContext);
+    const {signIn,errorMessage,removeError} = useContext(AuthContext);
 
     const {email,password, onChange} = useForm({
         password:'',
         email:'',
     });
 
+
+    useEffect(()=>{
+        if (errorMessage.length === 0) return;
+
+        Alert.alert(
+            'Error',
+            errorMessage,
+            [
+                {
+                text:'Ok',
+                onPress:removeError,
+                },
+            ]
+        );
+
+
+    },[errorMessage, removeError]);
+
     const onLogin = () => {
-        console.log('Siii entro, ay diooos mioooooooooooooooooo xd');
-        console.log(email);
         Keyboard.dismiss();
-        signIn({correo:email,password});
+        signIn({correo:email,password:password});
     };
 
 
