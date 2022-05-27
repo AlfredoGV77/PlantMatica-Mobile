@@ -66,7 +66,7 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
                 }}>
 
                 {/* NUestro backbutoon  */}
-                <TouchableOpacity onPress={()=>guardarFicha} style={{...DetallePlantaStyle.StarButton, top:top+20}}>
+                <TouchableOpacity onPress={guardarFicha} style={{...DetallePlantaStyle.StarButton, top:top+20}}>
                     <Icon name="star" color="white" size={35}/>
                 </TouchableOpacity>
 
