@@ -9,6 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Plantas } from '../Screens/Plantas';
 import { DetallePlanta } from '../Screens/DetallePlanta';
 import { SimplePlanta } from '../interfaces/plantaInterfaces';
+import FichasGuardadas from '../Screens/FichasGuardadas';
 
 
 export type RootStackParams={
@@ -28,6 +29,7 @@ export const Tab1 = () => {
     >
       <Stack.Screen name="Plantas" component={Plantas}/>
       <Stack.Screen name="DetallePlanta" component={DetallePlanta}/>
+      <Stack.Screen name="PlantasGuardadas" component={FichasGuardadas}/>
 
     </Stack.Navigator>
   );

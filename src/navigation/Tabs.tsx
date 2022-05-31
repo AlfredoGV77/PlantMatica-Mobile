@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable eol-last */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-trailing-spaces */
@@ -11,6 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Tab1 } from './Tab1';
 import { Tab2Screen } from './Tab2';
 import { Tab3 } from './Tab3';
+import { Tab4Screen } from './Tab4';
 const Tab = createBottomTabNavigator();
 
 
@@ -42,7 +44,7 @@ export const Tabs = () =>{
       options={{
         tabBarLabel:'Plantas',
         tabBarIcon:({color})=>
-        <Icon color={color} 
+        <Icon color={'green'} 
         size={20} 
         name='home' 
         />
@@ -56,19 +58,31 @@ export const Tabs = () =>{
       options={{
         tabBarLabel:'Buscar', 
         tabBarIcon:({color})=>
-        <Icon color={color} 
+        <Icon color={'green'} 
         size={20} 
         name='search'/>
       }}/>
 
       {/* Pantalla 3 */}
       <Tab.Screen 
+      name="PlantasGuardadas" 
+      component={Tab4Screen} 
+      options={{
+        tabBarLabel:'Guardadas', 
+        tabBarIcon:({color})=>
+        <Icon color={'green'} 
+        size={20} 
+        name='save'/>
+      }}/>
+
+      {/* Pantalla 4 */}
+      <Tab.Screen 
       name="DatosUser" 
       component={Tab3} 
       options={{
         tabBarLabel:'Usuario', 
         tabBarIcon:({color})=>
-        <Icon color={color} 
+        <Icon color={'green'} 
         size={20} 
         name='user'/>
       }}/>

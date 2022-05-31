@@ -14,6 +14,7 @@ export const NavigatorMain = () => {
 
   const {status} = useContext(AuthContext);
 
+
   if (status === 'checking') return <LoadingScreen/>;
 
   return (

@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable prettier/prettier */
 import {RootStackParams} from './Tab1';
 import React from 'react';
 import { SearchScreen } from '../Screens/SearchScreen';
@@ -8,7 +9,7 @@ import FichasGuardadas from '../Screens/FichasGuardadas';
 
 const Tab2 = createStackNavigator<RootStackParams>();
 
-export const Tab2Screen = () => {
+export const Tab4Screen = () => {
   return (
     <Tab2.Navigator
       screenOptions={{
@@ -16,9 +17,9 @@ export const Tab2Screen = () => {
         cardStyle: { backgroundColor: 'white' },
       }}
     >
+      <Tab2.Screen name="PlantasG" component={FichasGuardadas}/>
       <Tab2.Screen name="Plantas" component={SearchScreen}/>
       <Tab2.Screen name="DetallePlanta" component={DetallePlanta}/>
-      <Tab2.Screen name="PlantasGuardadas" component={FichasGuardadas}/>
     </Tab2.Navigator>
   );
 };
