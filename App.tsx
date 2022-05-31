@@ -6,6 +6,8 @@ import { NavigationContainer} from '@react-navigation/native';
 import { NavigatorMain } from './src/navigation/NavigatorMain';
 import { AuthProvider } from './src/context/AuthContext';
 
+import {LogBox} from 'react-native'
+LogBox.ignoreLogs(["Require cycle:"])
 
 const AppState = ({children}:{children:JSX.Element | JSX.Element[]})=>{
     return (
