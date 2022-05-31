@@ -74,10 +74,16 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
                 }}>
 
                 {/* NUestro backbutoon  */}
+<<<<<<< HEAD
                 <Pressable onPress={()=>guardarFicha({fichaID,idUsuario,tokenUser})} style={{...DetallePlantaStyle.StarButton, top:top+20}}>
                     <Icon name="star" color="yellow" size={35}/>
                 </Pressable>
 
+=======
+                <TouchableOpacity onPress={guardarFicha} style={{...DetallePlantaStyle.StarButton, top:top+20}}>
+                    <Icon name="star" color="white" size={35}/>
+                </TouchableOpacity>
+>>>>>>> 1df5434e4ff22c622f8e88d818de9bdea0978a17
 
                 {/* Pa guardar la ficha en favs  */}
                 <TouchableOpacity onPress={()=>navigation.pop()} style={{...DetallePlantaStyle.BackButton, top:top}}>
