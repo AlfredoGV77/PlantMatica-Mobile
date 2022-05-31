@@ -86,6 +86,23 @@ export const PlantaDetails = ({planta,color}:Props) => {
               <Text style={{...DetallePlantaStyle.title}}>Complemento: {planta.ficha.complemento}</Text>
           </View>         
 
+
+            {/* Usos Medicinales  de la Planta */}       
+          <View style={{...DetallePlantaStyle.container, borderBottomColor:color2, marginRight:10}}>
+            <Text style={{...DetallePlantaStyle.title,color:color2, margin:5}}> Formas de Consumo:</Text>
+            <FlatList
+                ref={ref}
+                horizontal
+                initialScrollIndex={index}
+                data={
+                        planta.ficha.usos_medicinales.length === 0
+                        ? ['Sin datos']
+                        : (planta.ficha.usos_medicinales.map((item)=>item))
+                }
+                renderItem={({item})=><Text style={{...DetallePlantaStyle.etiquetas, backgroundColor:color2,color:'white'}}>{item}</Text>}
+            /> 
+         </View>   
+
           {/* Consumo  de la Planta */}       
           <View style={{...DetallePlantaStyle.container, borderBottomColor:color2, marginRight:10}}>
             <Text style={{...DetallePlantaStyle.title,color:color2, margin:5}}> Formas de Consumo:</Text>
@@ -101,22 +118,7 @@ export const PlantaDetails = ({planta,color}:Props) => {
                 renderItem={({item})=><Text style={{...DetallePlantaStyle.etiquetas}}>♦{item}</Text>}
             /> 
          </View>  
-
-         {/* Usos Medicinales  de la Planta */}       
-          <View style={{...DetallePlantaStyle.container, borderBottomColor:color2, marginRight:10}}>
-            <Text style={{...DetallePlantaStyle.title,color:color2, margin:5}}> Formas de Consumo:</Text>
-            <FlatList
-                ref={ref}
-                horizontal
-                initialScrollIndex={index}
-                data={
-                        planta.ficha.usos_medicinales.length === 0
-                        ? ['Sin datos']
-                        : (planta.ficha.usos_medicinales.map((item)=>item))
-                }
-                renderItem={({item})=><Text style={{...DetallePlantaStyle.etiquetas, backgroundColor:color2,color:'white'}}>{item}</Text>}
-            /> 
-         </View>     
+  
 
       </ScrollView>
   )

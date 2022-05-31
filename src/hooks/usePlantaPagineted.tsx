@@ -1,13 +1,8 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
-/* eslint-disable prettier/prettier */
 /* eslint-disable space-infix-ops */
-/* eslint-disable prettier/prettier */
 /* eslint-disable semi */
-/* eslint-disable prettier/prettier */
 import { useRef, useEffect, useState } from 'react';
 import { plantaApi } from '../api/plantaApi';
 import { PlantaPaginatedResponse, SimplePlanta, Ficha } from '../interfaces/plantaInterfaces';

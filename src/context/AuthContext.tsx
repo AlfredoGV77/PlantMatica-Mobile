@@ -1,8 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable curly */
 
-
-
 import React from 'react';
 import { createContext, useEffect } from 'react';
 import { User, LoginData } from '../interfaces/userInterfaces';
@@ -52,6 +50,7 @@ export const AuthProvider = ({children}:any)=>{
                 'x-token': token,
             },
         });
+
         const resjson2 = await data.json();
 
         const res = await fetch(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/user/${resjson2.id}`, {
@@ -67,10 +66,11 @@ export const AuthProvider = ({children}:any)=>{
         if (data.status !== 200){
             return dispatch({type:'notAuthenticated'});
         }
+        await AsyncStorage.setItem('token',token);
         dispatch({
             type:'signUp',
             payload:{
-                token:resjson2.token,
+                token:token,
                 user:resjson3.usuario,
             },
         });
@@ -82,7 +82,6 @@ export const AuthProvider = ({children}:any)=>{
 
 
     const signIn = async({correo,password}:LoginData) => {
-
             const res = await fetch('https://mmg7n2ixnk.us-east-2.awsapprunner.com/login', {
                 method: 'POST',
                 mode: 'cors',
@@ -114,11 +113,7 @@ export const AuthProvider = ({children}:any)=>{
                     payload:resjson.msg || 'Error al autenticar. Revise su informacion',
                 });
             }
-
-
-
     };
-
 
     const logUp = async() => {
         await AsyncStorage.removeItem('token');
