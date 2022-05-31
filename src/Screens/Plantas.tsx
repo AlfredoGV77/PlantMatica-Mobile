@@ -1,12 +1,9 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable eol-last */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-trailing-spaces */
-/* eslint-disable prettier/prettier */
 /* eslint-disable keyword-spacing */
-/* eslint-disable prettier/prettier */
 
 
 import React, { useContext } from 'react';
@@ -16,8 +13,6 @@ import { usePlantaPagineted } from '../hooks/usePlantaPagineted';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PlantaCard } from '../components/PlantaCard';
 import { PlantCardStyle } from '../Styles/PlantCardStyle';
-import { AuthContext } from '../context/AuthContext';
-import { User } from '../interfaces/userInterfaces';
 
 
 export const Plantas = () => {

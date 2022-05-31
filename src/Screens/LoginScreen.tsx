@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React, { useContext } from 'react';
-import { Dimensions, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, ImageBackground, Keyboard, KeyboardAvoidingView, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useForm } from '../hooks/useForm';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -73,13 +73,7 @@ export const LoginScreen = ({navigation}:Props) =>{
                     }}>
                     <View style={styles.brandView}>
                     {/*Creamos el codigo para el icono de la aplicacion*/}
-                    <Image
-                        source={require('../Recursos/Icono.png')}
-                        style={{
-                        width: Dimensions.get('window').width / 2,
-                        height: Dimensions.get('window').height / 4,
-                        }}
-                    />
+
                     {/*Creamos el codigo para el titulo de la aplicacion*/}
                     <Text style={styles.brandViewText}>PlantMatica</Text>
                     </View>

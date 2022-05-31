@@ -11,7 +11,7 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { useContext } from 'react'
 import { RootStackParams } from '../navigation/Tab1'
-import { ActivityIndicator, Image, Text, View } from 'react-native';
+import { ActivityIndicator, Image, Text, View, Pressable} from 'react-native';
 import { DetallePlantaStyle } from '../Styles/DetallePlantaStyle';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -22,6 +22,7 @@ import { AuthContext } from '../context/AuthContext';
 import { LoadingFicha } from '../interfaces/userInterfaces';
 
 
+
 interface Props extends StackScreenProps<RootStackParams,'DetallePlanta'>{};
 
 export const DetallePlanta = ( {navigation,route}:Props) => {
@@ -29,33 +30,40 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
     const{_id,nombre_comun,imagen}=simplePlanta;
     const {top} = useSafeAreaInsets();   
 
+
     const{isLoading,Planta} = usePlanta(_id)
 
     const {user,token} = useContext(AuthContext);
-    const id_user = user.id;
 
-    const id_ficha=_id;
-    console.log('ALONEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE'+user._id)
-    const guardarFicha = async ({id_ficha, id_user, token}:LoadingFicha) => {
-        console.log('hola si entre xddd')
-        const res = await fetch(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha/guardar/${id_ficha}`, {
+
+    const fichaID=_id;
+    const tokenUser=token;
+    const idUsuario=user?._id;
+
+    const guardarFicha = async ({fichaID, idUsuario, tokenUser}:LoadingFicha) => {
+        const res = await fetch(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha/guardar/${fichaID}`, {
             method: 'POST',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
-                'x-token': token,
+                'x-token': tokenUser,
             },
             body: JSON.stringify({
-                id_user,
+                id_user: idUsuario,
             }),
         });
-        const resJSON = await res.json();
-        console.log('aloneeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'+resJSON);
-        return resJSON;
-    
+        // Alert.alert(
+        //     'Ficha Guardada',
+        //     'La ficha se ha guardado correctamente',
+        //     [
+        //         {                
+        //         text:'Continuar',
+        //         }
+        //     ]
+        // );
     }
 
-
+    
 
     return (
         <View style={{flex:1}}>
@@ -66,9 +74,10 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
                 }}>
 
                 {/* NUestro backbutoon  */}
-                <TouchableOpacity onPress={()=>guardarFicha} style={{...DetallePlantaStyle.StarButton, top:top+20}}>
-                    <Icon name="star" color="white" size={35}/>
-                </TouchableOpacity>
+                <Pressable onPress={()=>guardarFicha({fichaID,idUsuario,tokenUser})} style={{...DetallePlantaStyle.StarButton, top:top+20}}>
+                    <Icon name="star" color="yellow" size={35}/>
+                </Pressable>
+
 
                 {/* Pa guardar la ficha en favs  */}
                 <TouchableOpacity onPress={()=>navigation.pop()} style={{...DetallePlantaStyle.BackButton, top:top}}>
