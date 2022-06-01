@@ -6,19 +6,22 @@
 /* eslint-disable keyword-spacing */
 
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Image, FlatList, Text, ActivityIndicator, View } from 'react-native';
 import { styleRegister } from '../Styles/RegisterStyle';
 import { usePlantaPaginetedSave } from '../hooks/usePlantaPaginetedSave';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PlantaCard } from '../components/PlantaCard';
 import { PlantCardStyle } from '../Styles/PlantCardStyle';
+import { AuthContext } from '../context/AuthContext';
+import { Ficha } from '../interfaces/plantaInterfaces';
 
 
 export const FichasGuardadas = () => {
 
   const{top} = useSafeAreaInsets();
   const{simplePlantaListSave, loadFichasSave} = usePlantaPaginetedSave();
+
   return(
   <>
    <Image
