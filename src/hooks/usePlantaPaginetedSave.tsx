@@ -26,20 +26,20 @@ export const usePlantaPaginetedSave = () => {
   return [holiwis];
 };
 
-const borrarFicha = async(id_ficha,id_user,tokens)=>{
-  const res = await fetch(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha/guardadas/delete/${id_ficha}`, {
-      method: 'DELETE',
-      mode: 'cors',
-      headers: {
-          'Content-Type': 'application/json',
-          'x-token': tokens,
-      },
-      body: JSON.stringify({
-          id_user: id_user,
-      }),
-  });
-  const resJSON = await res.json();
-};
+    const borrarFicha = async(id_ficha,id_user,tokens)=>{
+        const res = await fetch(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha/guardadas/delete/${id_ficha}`, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-token': tokens,
+            },
+            body: JSON.stringify({
+                id_user: id_user,
+            }),
+        });
+        const resJSON = await res.json();
+      };
 
 
 
