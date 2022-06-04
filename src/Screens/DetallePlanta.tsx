@@ -20,6 +20,7 @@ import { usePlanta } from '../hooks/usePlanta';
 import { PlantaDetails } from '../components/PlantaDetails';
 import { AuthContext } from '../context/AuthContext';
 import { LoadingFicha } from '../interfaces/userInterfaces';
+import { PlantGCardStyle } from '../Styles/PlantGCardStyle';
 
 
 
@@ -29,7 +30,6 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
     const{simplePlanta,color} = route.params;
     const{_id,nombre_comun,imagen}=simplePlanta;
     const {top} = useSafeAreaInsets();   
-
 
     const{isLoading,Planta} = usePlanta(_id)
 
