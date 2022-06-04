@@ -1,65 +1,63 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable space-infix-ops */
 /* eslint-disable semi */
 import { useRef, useEffect, useState, useContext } from 'react';
-import { misFichasGuardadas } from '../api/fichasguardadas';
-import { plantaApi } from '../api/plantaApi';
 import { AuthContext } from '../context/AuthContext';
-import { PlantaPaginatedResponse, SimplePlanta, Ficha, PlantaFullInformation } from '../interfaces/plantaInterfaces';
+import { SimplePlanta, Ficha } from '../interfaces/plantaInterfaces';
 
 
 export const usePlantaPaginetedSave = () => {
-  const [isLoadingSave, setIsLoadingSave] = useState(true);
   const [simplePlantaListSave,setSimplePlantaListSave]=useState<SimplePlanta[]>([]);
-  const [listita,setlistita]=useState<Ficha[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const misFichasGuardadas = async (id_user,tokenxD) => {
+    const res = await fetch(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha/guardadas/${id_user}`, {
+      method: 'GET',
+      mode: 'cors',
+      headers:{
+          'Content-Type': 'application/json',
+          'x-token': tokenxD!,
+      },
+  });
+  const fichasG = await res.json();
+  const holiwis = (fichasG.fichas_guardadas);
+  return [holiwis];
+};
+
+const borrarFicha = async(id_ficha,id_user,tokens)=>{
+  const res = await fetch(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha/guardadas/delete/${id_ficha}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: {
+          'Content-Type': 'application/json',
+          'x-token': tokens,
+      },
+      body: JSON.stringify({
+          id_user: id_user,
+      }),
+  });
+  const resJSON = await res.json();
+};
+
+
 
   // ESTO ES PA Q NAMAS PA Q SE HAGA UN SCROLL INFINITOo
-  const nextPageUrl=useRef('https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha')
 
   const {user,token} = useContext(AuthContext);
 
   const traerFichasGuardadas=async()=>{
     const fichasguardadas= await misFichasGuardadas(user?._id,token);
-    const FG2= JSON.stringify(fichasguardadas)
-    console.log('holis')
-    console.log(fichasguardadas[0].fichas_guardadas)
-    console.log('holis')
-    setlistita(fichasguardadas[0].fichasguardadas);
-  }
-
-  const loadFichasSave=async()=>{
-    setIsLoadingSave(true);
-    mapPlantaList(listita);
-  }
-
-  const mapPlantaList=(plantaList:Ficha[])=>{
-    console.log(plantaList);
-    console.log('SI SE PUDO XD')
-    const newPlantaList:SimplePlanta[]=plantaList.map(({_id,nombre_comun,etiquetas,imagen})=>{
-      return {
-        _id,
-        nombre_comun,
-        etiquetas,
-        imagen,
-      }
-    });
-    setSimplePlantaListSave([...simplePlantaListSave,...newPlantaList]);
-    setIsLoadingSave(false);
+      setSimplePlantaListSave(fichasguardadas[0].fichas_guardadas);
   }
 
   useEffect(()=>{
-    loadFichasSave();
     traerFichasGuardadas();
     },[]);
 
   return {
-    isLoadingSave,
     simplePlantaListSave,
-    loadFichasSave,
   };
-
-  
 }
+
