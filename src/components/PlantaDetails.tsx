@@ -89,7 +89,7 @@ export const PlantaDetails = ({planta,color}:Props) => {
 
             {/* Usos Medicinales  de la Planta */}       
           <View style={{...DetallePlantaStyle.container, borderBottomColor:color2, marginRight:10}}>
-            <Text style={{...DetallePlantaStyle.title,color:color2, margin:5}}> Formas de Consumo:</Text>
+            <Text style={{...DetallePlantaStyle.title,color:color2, margin:5}}> Usos Medicinales:</Text>
             <FlatList
                 ref={ref}
                 horizontal
