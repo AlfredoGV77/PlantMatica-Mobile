@@ -1,25 +1,57 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable eol-last */
-/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-trailing-spaces */
-/* eslint-disable prettier/prettier */
 /* eslint-disable keyword-spacing */
-/* eslint-disable prettier/prettier */
-import React from 'react';
-import { FlatList, Text} from 'react-native';
+
+import React, { useContext } from 'react';
+import { FlatList, Text, TouchableOpacity, View} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PlantGCardStyle } from '../Styles/PlantGCardStyle';
 import { usePlantaPaginetedSave } from '../hooks/usePlantaPaginetedSave';
 import { PlantaCardGuardada } from '../components/PlantaGuardada';
+import { AuthContext } from '../context/AuthContext';
+import { SwipeListView } from 'react-native-swipe-list-view';
 export const Plantas = () => {
   const{top} = useSafeAreaInsets();
   const{simplePlantaListSave} = usePlantaPaginetedSave();
+  const {user,token} = useContext(AuthContext);
+
+  const borrarFicha = async(id_ficha,id_user,tokens)=>{
+    const res = await fetch(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha/guardadas/delete/${id_ficha}`, {
+        method: 'DELETE',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-token': tokens,
+        },
+        body: JSON.stringify({
+            id_user: id_user,
+        }),
+    });
+  };
+
+
+  const renderHiddenItem = (data, rowMap) => (
+    <View style={PlantGCardStyle.rowBack}>
+        <TouchableOpacity
+            style={[PlantGCardStyle.backRightBtn, PlantGCardStyle.backRightBtnRight]}
+            onPress={() =>borrarFicha(data.item._id,user?._id,token)}
+        >
+            <Text>Delete</Text>
+        </TouchableOpacity>
+    </View>
+);
+
+
   return(
   <>
-    <FlatList
+    <SwipeListView
       data={simplePlantaListSave}
       keyExtractor={(planta) => planta._id}
       showsVerticalScrollIndicator={false}
+      renderHiddenItem={renderHiddenItem}
+      rightOpenValue={-150}
 
       //Header 
       ListHeaderComponent={(
