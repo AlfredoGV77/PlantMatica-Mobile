@@ -33,24 +33,35 @@ export const ProfileStyle = StyleSheet.create({
     nombre:{
         fontSize:36,
         fontWeight:'bold',
-        bottom:'8%'
+        bottom:'8%',
+        color:'black'
     },
     number:{
         color:'black',
-        fontSize:18,
+        fontSize:25,
         fontWeight:'bold',
     },
     numberSecond:{
         color:'black',
-        fontSize:18,
+        fontSize:20,
         fontWeight:'bold',
     },
     estadoysexo:{
         bottom:'1%',
+        color:'black',
         fontSize:18,
         marginHorizontal:15,
         alignItems:'center',
     },
+    button:{
+        borderRadius:100,
+        padding:10,
+    },
+    textBTN:{
+        fontSize:20,
+        color:'white',
+        fontWeight:'bold',
+    }
 
 
 });

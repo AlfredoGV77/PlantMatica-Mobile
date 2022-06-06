@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     paddingHorizontal: 10,
+    fontSize: 16,
     height: 40,
     color: 'black',
     width: '90%',
@@ -63,5 +64,18 @@ export const styles = StyleSheet.create({
   newUserContainer:{
     alignItems:'flex-end',
     marginTop:10,
+  },
+  dropdown:{
+    width:'90%',
+    height:40,
+    fontSize:16,
+    backgroundColor:'white',
+    borderRadius:23,
+  },
+  dropdownX:{
+    left:60,
+    fontSize:16,
+    backgroundColor:'white',
+    borderRadius:23,
   },
 });
