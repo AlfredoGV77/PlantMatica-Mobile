@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable no-extra-semi */
 /* eslint-disable space-infix-ops */
@@ -11,7 +10,7 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { useContext } from 'react'
 import { RootStackParams } from '../navigation/Tab1'
-import { ActivityIndicator, Image, Text, View, Pressable} from 'react-native';
+import { ActivityIndicator, Image, Text, View, Pressable, Alert} from 'react-native';
 import { DetallePlantaStyle } from '../Styles/DetallePlantaStyle';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -20,9 +19,6 @@ import { usePlanta } from '../hooks/usePlanta';
 import { PlantaDetails } from '../components/PlantaDetails';
 import { AuthContext } from '../context/AuthContext';
 import { LoadingFicha } from '../interfaces/userInterfaces';
-import { PlantGCardStyle } from '../Styles/PlantGCardStyle';
-
-
 
 interface Props extends StackScreenProps<RootStackParams,'DetallePlanta'>{};
 
@@ -30,6 +26,7 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
     const{simplePlanta,color} = route.params;
     const{_id,nombre_comun,imagen}=simplePlanta;
     const {top} = useSafeAreaInsets();   
+
 
     const{isLoading,Planta} = usePlanta(_id)
 
@@ -39,6 +36,9 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
     const fichaID=_id;
     const tokenUser=token;
     const idUsuario=user?._id;
+
+
+    
 
     const guardarFicha = async ({fichaID, idUsuario, tokenUser}:LoadingFicha) => {
         const res = await fetch(`https://mmg7n2ixnk.us-east-2.awsapprunner.com/ficha/guardar/${fichaID}`, {
@@ -52,18 +52,22 @@ export const DetallePlanta = ( {navigation,route}:Props) => {
                 id_user: idUsuario,
             }),
         });
-        // Alert.alert(
-        //     'Ficha Guardada',
-        //     'La ficha se ha guardado correctamente',
-        //     [
-        //         {                
-        //         text:'Continuar',
-        //         }
-        //     ]
-        // );
+        if(res.status===200){
+            console.log('Hola si entre aca xd')
+            Alert.alert(
+                'Ficha Guardada',
+                'La ficha se ha guardado correctamente',
+                [
+                    {                
+                    text:'Continuar',
+                    },
+                ]
+            );
+        }
     }
 
-    
+
+
 
     return (
         <View style={{flex:1}}>

@@ -2,10 +2,11 @@
 /* eslint-disable eol-last */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-trailing-spaces */
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable keyword-spacing */
 
 import React, { useContext } from 'react';
-import { FlatList, Text, TouchableOpacity, View} from 'react-native';
+import { Alert, Text, TouchableOpacity, View} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PlantGCardStyle } from '../Styles/PlantGCardStyle';
 import { usePlantaPaginetedSave } from '../hooks/usePlantaPaginetedSave';
@@ -29,6 +30,15 @@ export const Plantas = () => {
             id_user: id_user,
         }),
     });
+    Alert.alert(
+      'Ficha Eliminada',
+      'La ficha se ha eliminado correctamente',
+      [
+          {                
+          text:'Continuar',
+          },
+      ]
+  );
   };
 
 
@@ -38,7 +48,7 @@ export const Plantas = () => {
             style={[PlantGCardStyle.backRightBtn, PlantGCardStyle.backRightBtnRight]}
             onPress={() =>borrarFicha(data.item._id,user?._id,token)}
         >
-            <Text>Delete</Text>
+            <Text style={{color:'white',fontWeight:'bold'}}>Borrar</Text>
         </TouchableOpacity>
     </View>
 );
