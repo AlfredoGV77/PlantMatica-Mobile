@@ -9,144 +9,46 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { LoginData, User } from '../interfaces/userInterfaces';
 import { styles } from '../Styles/LoginStyle';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import SelectDropdown from 'react-native-select-dropdown';
+import SwitchSelector from 'react-native-switch-selector';
+import { AuthContext } from '../context/AuthContext';
 
-
-
-const Estados = [
-    {
-        estado:'Aguascalientes',
-        id:1,
-    },
-    {
-        estado:'Baja California',
-        id:2,
-    },
-    {
-        estado:'Baja California Sur',
-        id:3,
-    },
-    {
-        estado:'Campeche',
-        id:4,
-    },
-    {
-        estado:'Chiapas',
-        id:5,
-    },
-    {
-        estado:'Chihuahua',
-        id:6,
-    },
-    {
-        estado:'Ciudad de México',
-        id:7,
-    },
-    {
-        estado:'Coahuila de Zaragoza',
-        id:8,
-    },
-    {
-        estado:'Colima',
-        id:9,
-    },
-    {
-        estado:'Durango',
-        id:10,
-    },
-    {
-        estado:'Guanajato',
-        id:11,
-    },
-    {
-        estado:'Guerrero',
-        id:12,
-    },
-    {
-        estado:'Hidalgo',
-        id:13,
-    },
-    {
-        estado:'Jalisco',
-        id:14,
-    },
-    {
-        estado:'Estado de México',
-        id:15,
-    },
-    {
-        estado:'Michoacán de Ocampo',
-        id:16,
-    },
-    {
-        estado:'Morelos',
-        id:17,
-    },
-    {
-        estado:'Nayarit',
-        id:18,
-    },
-    {
-        estado:'Nuevo León',
-        id:19,
-    },
-    {
-        estado:'Oaxaca',
-        id:20,
-    },
-    {
-        estado:'Puebla',
-        id:21,
-    },
-    {
-        estado:'Querétaro',
-        id:22,
-    },
-    {
-        estado:'Quintana Roo',
-        id:23,
-    },
-    {
-        estado:'San Luis Potosí	',
-        id:24,
-    },
-    {
-        estado:'Sinaloa',
-        id:25,
-    },
-    {
-        estado:'Sonora',
-        id:26,
-    },
-    {
-        estado:'Tabasco',
-        id:27,
-    },
-    {
-        estado:'Tamaulipas',
-        id:28,
-    },
-    {
-        estado:'Tlaxcala',
-        id:29,
-    },
-    {
-        estado:'Veracruz',
-        id:30,
-    },
-    {
-        estado:'Yucatán',
-        id:31,
-    },
-    {
-        estado:'Zacatecas',
-        id:32,
-    },
-
+const countries = [
+    'Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche',
+    'Chiapas', 'Chihuahua', 'Ciudad de México', 'Coahuila de Zaragoza',
+    'Colima', 'Durango', 'Guanajato', 'Guerrero',
+    'Hidalgo', 'Jalisco', 'Estado de México', 'Michoacán de Ocampo',
+    'Morelos', 'Nayarit', 'Nuevo León', 'Oaxaca',
+    'Puebla', 'Querétaro', 'Quintana Roo', 'San Luis Potosí',
+    'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas',
+    'Tlaxcala', 'Veracruz', 'Yucatán', 'Zacatecas',
 ];
+
+const options = [
+    { label: 'Femenino', value: 'Femenino' },
+    { label: 'Masculino', value: 'Masculino' },
+    { label: 'Prefiero no Decirlo', value: 'Prefiero no Decirlo' },
+  ];
 
 
 export const RegisterScreen = () =>{
+    const {signUp} = useContext(AuthContext);
 
+
+    const {usuario,correo,contraseña,estado,sexo,edad,onChange} = useForm({
+        usuario:'',
+        correo:'',
+        contraseña:'',
+        estado:'',
+        sexo:'',
+        edad:'',
+    });
+
+    const onRegister = ()=>{
+        console.log(usuario,correo,contraseña,estado,sexo,edad);
+        Keyboard.dismiss();
+        signUp({usuario:usuario,correo:correo,contraseña:contraseña,estado:estado,sexo:sexo,edad:edad});
+    };
 
   return (
     <>
@@ -186,9 +88,9 @@ export const RegisterScreen = () =>{
                             <TextInput style={styles.input}
                             placeholder="Usuario"
                             placeholderTextColor={'black'}
-                            // onChangeText={(value)=>onChange(value,'usuario')}
-                            // value={usuario}
-                            // onSubmitEditing={onLogin}
+                            onChangeText={(value)=>onChange(value,'usuario')}
+                            value={usuario}
+                            onSubmitEditing={onRegister}
                             autoCapitalize="none"
                             autoCorrect={false}
                             />
@@ -200,9 +102,23 @@ export const RegisterScreen = () =>{
                             placeholder="Correo"
                             keyboardType="email-address"
                             placeholderTextColor={'black'}
-                            // onChangeText={(value)=>onChange(value,'email')}
-                            // value={email}
-                            // onSubmitEditing={onLogin}
+                            onChangeText={(value)=>onChange(value,'correo')}
+                            value={correo}
+                            onSubmitEditing={onRegister}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            />
+                        </View>
+
+                        <View style={styles.ViewInputs}>
+                            <Icon name="cake" size={24} color="#0dd76f" />
+                            <TextInput style={styles.input}
+                            placeholder="Edad"
+                            keyboardType="number-pad"
+                            placeholderTextColor={'black'}
+                            onChangeText={(value)=>onChange(value,'edad')}
+                            value={edad}
+                            onSubmitEditing={onRegister}
                             autoCapitalize="none"
                             autoCorrect={false}
                             />
@@ -215,11 +131,43 @@ export const RegisterScreen = () =>{
                             placeholderTextColor={'black'}
                             editable={true}
                             secureTextEntry={true}
-                            // onChangeText={(value)=>onChange(value,'password')}
-                            // value={password}
-                            // onSubmitEditing={onLogin}
+                            onChangeText={(value)=>onChange(value,'contraseña')}
+                            value={contraseña}
+                            onSubmitEditing={onRegister}
                             autoCapitalize="none"
                             autoCorrect={ false }
+                            />
+                        </View>
+                        <View style={styles.ViewInputs}>
+                        <Icon name="home" size={24} color="#0dd76f"/>
+                        <SelectDropdown
+                            data={countries}
+                            onSelect={(selectedItem, index) => {
+                                onChange(selectedItem,'estado');
+                            }}
+                            buttonTextAfterSelection={(selectedItem, index) => {
+                                // text represented after item is selected
+                                // if data array is an array of objects then return selectedItem.property to render after item is selected
+                                return selectedItem;
+                            }}
+                            rowTextForSelection={(item, index) => {
+                                // text represented for each item in dropdown
+                                // if data array is an array of objects then return item.property to represent item in dropdown
+                                return item;
+                            }}
+                            buttonStyle={{...styles.dropdown}}
+                            dropdownStyle={{...styles.dropdownX}}
+                            defaultButtonText={'Ciudad de México'}
+                            buttonTextStyle={{color: 'black',fontSize:16, fontFamily: 'Sans-serif-Roboto'}}
+                        />
+                        </View>
+
+                        <View style={{...styles.ViewInputs, borderColor: 'white'}}>
+                            <SwitchSelector
+                                options={options}
+                                initial={0}
+                                onPress={(value: any) => onChange(value,'sexo')}
+                                buttonColor={'#0dd76f'}
                             />
                         </View>
 
@@ -231,9 +179,9 @@ export const RegisterScreen = () =>{
                             justifyContent:'center',
                             alignItems:'center',
                             }}>
-                        {/* <Pressable style={[styles.button,styles.button_shadow]} onPress={onLogin}>
-                            <Text style={styles.text}>Iniciar Sesion</Text>
-                        </Pressable> */}
+                        <Pressable style={[styles.button,styles.button_shadow]} onPress={onRegister}>
+                            <Text style={styles.text}>Crear Cuenta</Text>
+                        </Pressable>
                         </View>
                     </View>
                 </View>

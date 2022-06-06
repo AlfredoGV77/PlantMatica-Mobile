@@ -3,7 +3,7 @@
 /* eslint-disable curly */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Button, Image, Pressable, Text, View } from 'react-native';
+import { Button, Image, Pressable, Text, View, TouchableOpacity } from 'react-native';
 import ImageColors from 'react-native-image-colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -49,14 +49,14 @@ export const DatosUser = () => {
                 size={40} />
             </Pressable>
             <View style={{...ProfileStyle.bottomContainer}}>
-                <Image style={{...ProfileStyle.profile}} source={{uri:img}} />
-                <Text style={{...ProfileStyle.nombre}}>{username}</Text>
+                <Image style={{...ProfileStyle.profile, borderColor:bgcolor,borderWidth:5}} source={{uri:img}} />
+                <Text style={{...ProfileStyle.nombre, color:bgcolor}}>{username}</Text>
 
-                <Text style={{color:'black',bottom:'7%',fontSize:18}}>Correo</Text>
-                <Text style={{color:'grey',bottom:'7%',fontSize:18}}>{correo}</Text>
+                <Text style={{color:'black',bottom:'7%',fontSize:25}}>Correo</Text>
+                <Text style={{color:'black',bottom:'7%',fontSize:20}}>{correo}</Text>
 
-                <Text style={{color:'black',bottom:'7%',fontSize:18, marginTop:10}}>Edad</Text>
-                <Text style={{color:'black',bottom:'7%',fontSize:18}}>{edad}</Text>
+                <Text style={{color:'black',bottom:'7%',fontSize:25, marginTop:10}}>Edad</Text>
+                <Text style={{color:'black',bottom:'7%',fontSize:20}}>{edad}</Text>
 
                 <View style={{flexDirection:'row',bottom:'7%'}}>
                     <View style={{...ProfileStyle.estadoysexo}}>
@@ -68,11 +68,9 @@ export const DatosUser = () => {
                       <Text style={{...ProfileStyle.numberSecond}}>{sexo}</Text>
                     </View>
                 </View>
-                <Button
-                    onPress={logUp}
-                    title="Cerrar Sesión"
-                    color="#72cb10"
-                />
+                <Pressable style={{...ProfileStyle.button, backgroundColor:bgcolor}} onPress={logUp}>
+                    <Text style={{...ProfileStyle.textBTN}}>Cerrar Sesion</Text>
+                </Pressable>
             </View>
         </View>
 
