@@ -5,6 +5,16 @@ export interface LoginData{
   password:string,
 }
 
+export interface RegisterData{
+  usuario:string,
+  correo:string,
+  contraseña:string,
+  estado:string,
+  sexo:string,
+  edad:string,
+}
+
+
 export interface LoadingFicha{
   fichaID?:string,
   idUsuario?:string,
